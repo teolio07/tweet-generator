@@ -1,0 +1,37 @@
+.form{
+    width:50vw;
+    height: 40vh;
+    background:rgb(39, 85, 170);
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    margin:5vh auto;
+    border-radius:10px
+}
+
+.form label{
+    margin:10px 20px 5px 20px;
+
+}
+
+.form input{
+    border-radius: 10px;
+    margin-bottom:px;
+    padding:5px
+}
+
+.form button{
+    margin-top:15px;
+    width: 20vw;
+    border-radius: 10px;
+    padding:5px;
+}
+
+.form input:hover{
+    background-color: rgb(144, 189, 228);
+}
+
+.form button:hover{
+    background-color: rgb(144, 189, 228);
+}

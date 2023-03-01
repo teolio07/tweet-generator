@@ -1,0 +1,16 @@
+.ul_container{
+    background:rgb(87, 204, 188);
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.ul_container li{
+    list-style:none;
+    margin:10px
+}
+
+
+.ul_container h2{
+    text-align: center;
+    width: 100%;
+}
