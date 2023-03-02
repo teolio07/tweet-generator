@@ -3,7 +3,8 @@ import './tweets.css';
 import { TypeTweet } from '../../DTO/TweetDto';
 import {Tweet} from '../../ui/tweet/Tweet'
 interface tweets_props{
-    allTweets:{}[]
+    allTweets:{}[],
+    delete: (indice:number)=>void
 }
 
 export function Tweets(props:tweets_props):JSX.Element{
@@ -11,6 +12,11 @@ export function Tweets(props:tweets_props):JSX.Element{
 
     let tweetsCasting:TypeTweet[] = (props.allTweets as TypeTweet[])
     let id = 0;
+    
+    function deleteTweet(indice:number){
+        props.delete(indice)
+        console.log(indice+"desde")
+    }
     
     useEffect(()=>{
         setTweets(tweetsCasting)
@@ -20,9 +26,13 @@ export function Tweets(props:tweets_props):JSX.Element{
             <h2>Tweets</h2>
         {tweets.map((item) => (
             <li key={id}>
-                {id++}
 
                 <Tweet name={item.name} tweet={item.tweet}/>
+                <button onClick={()=>{let indi = id; deleteTweet(indi)}}>Eliminar</button>
+                <button >Archivar</button>
+                {id++}
+
+
             </li>
         ))}
         </ul>
