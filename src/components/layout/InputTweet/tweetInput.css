@@ -1,13 +1,14 @@
 .form{
     width:50vw;
     height: 40vh;
-    background:rgb(39, 85, 170);
+    background-color:#e1d9a5;
     display:flex;
     flex-direction: column;
     justify-content:center;
     align-items: center;
-    margin:5vh auto;
-    border-radius:10px
+    margin:0vh auto;
+    border-radius:10px;
+
 }
 
 .form label{

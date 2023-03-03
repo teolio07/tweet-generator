@@ -1,7 +1,22 @@
 .ul_container{
-    background:rgb(87, 204, 188);
+    background-color:#e5e5bb;
     display:flex;
     flex-wrap: wrap;
+    justify-content: center;
+    width: 60vw;
+    margin: 10px auto;
+}
+
+.ul_container button{
+    margin-top:15px;
+    width: 5vw;
+    border-radius: 10px;
+    padding:5px;
+    margin: 5px;
+}
+
+.ul_container button:hover{
+    background-color: rgb(144, 189, 228);
 }
 
 .ul_container li{

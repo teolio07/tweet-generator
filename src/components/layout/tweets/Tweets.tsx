@@ -2,9 +2,11 @@ import React, {useEffect,useState} from 'react';
 import './tweets.css';
 import { TypeTweet } from '../../DTO/TweetDto';
 import {Tweet} from '../../ui/tweet/Tweet'
+import { UrlWithStringQuery } from 'url';
 interface tweets_props{
     allTweets:{}[],
-    delete: (indice:number)=>void
+    delete: (index:string)=>void,
+    archive: (index:string)=>void
 }
 
 export function Tweets(props:tweets_props):JSX.Element{
@@ -13,9 +15,14 @@ export function Tweets(props:tweets_props):JSX.Element{
     let tweetsCasting:TypeTweet[] = (props.allTweets as TypeTweet[])
     let id = 0;
     
-    function deleteTweet(indice:number){
-        props.delete(indice)
-        console.log(indice+"desde")
+    function deleteTweet(index:string){
+        props.delete(index)
+        console.log(index+"desde")
+    }
+
+    function archive(index:string){
+        props.archive(index)
+        console.log(index+"desde")
     }
     
     useEffect(()=>{
@@ -24,17 +31,17 @@ export function Tweets(props:tweets_props):JSX.Element{
     return(
         <ul className='ul_container'>
             <h2>Tweets</h2>
-        {tweets.map((item) => (
-            <li key={id}>
+            {tweets.map((item) => (
+                <li key={id}>
 
-                <Tweet name={item.name} tweet={item.tweet}/>
-                <button onClick={()=>{let indi = id; deleteTweet(indi)}}>Eliminar</button>
-                <button >Archivar</button>
+                    <Tweet name={item.name} tweet={item.tweet}/>
+                    <button onClick={()=>{deleteTweet(item.id)}}>Eliminar</button>
+                    <button onClick={()=>{archive(item.id)}}>Archivar</button>
                 {id++}
 
 
-            </li>
-        ))}
+                </li>
+            ))}
         </ul>
     )
 }

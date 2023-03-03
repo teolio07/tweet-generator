@@ -1,5 +1,6 @@
-import react, {useState} from 'react'
-import './tweetInput.css'
+import React, {useState} from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import './tweetInput.css';
 interface tweet_props{
     returnTweet:(tweet:{})=>void
 }
@@ -26,7 +27,7 @@ export function TweetInput(props:tweet_props):JSX.Element{
 
             <button onClick={(e)=>{
                 e.preventDefault();
-                let fullTweet:{} = {name:name, tweet:tweet}
+                let fullTweet:{} = {id:uuidv4(),name:name, tweet:tweet}
                 sendTweet(fullTweet)
             }}>Enviar</button>
         </form>

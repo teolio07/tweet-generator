@@ -1,0 +1,30 @@
+.tweet-container-modal{
+    width: 100px;
+    height: 100px;
+    position:absolute;
+    top: 40vh;
+    left: 70vw;
+}
+
+.tweet-container-modal button{
+    margin-top:15px;
+    width: 10vw;
+    border-radius: 10px;
+    padding:5px;
+}
+
+.tweet-container-modal button:hover{
+    background-color: rgb(144, 189, 228);
+}
+
+
+.modal{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+
+.hide-modal{
+    display: none;
+
+}

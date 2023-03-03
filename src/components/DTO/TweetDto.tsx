@@ -1,1 +1,1 @@
-export type TypeTweet = {name:string,tweet:string}
+export type TypeTweet = {id:string,name:string,tweet:string}
