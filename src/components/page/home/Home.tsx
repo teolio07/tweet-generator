@@ -28,37 +28,64 @@ export function Home(props:home_props):JSX.Element{
         localStorage.setItem('archivedTweets',JSON.stringify([]))
     }
 
-    function Filter (element:TypeTweet){
-        return element
-    }
+ 
+    function deleteTweet(id:string){
+        let newTweetsList = localTweets.filter((tweet,index)=>{
+            let tweetCasting = (tweet as TypeTweet); 
+            if(tweetCasting.id !== id){
+                return tweet
+            }
 
-    const deleteTweet = (indice:string)=>{
-        if(tweetsLocalStoage){
             
-            let dataTweets = localTweets.filter((function(currentValue, index, arr){
-                let filters:TypeTweet[] = (currentValue as TypeTweet[])
-            }))
-            /* localTweets.splice(indice-1,1);
-            setTweets(localTweets);
-            localStorage.setItem('tweets', JSON.stringify(localTweets));  */
-            /* let updateTweets = tweets.splice(indice,1);
-            setTweets(updateTweets);
-            localStorage.setItem('tweets', JSON.stringify(updateTweets)); */
-            
-        }
+        });
+        localStorage.setItem('tweets', JSON.stringify(newTweetsList));
+        setTweets(newTweetsList);
+
     }
 
-    const archiveTweet = (index:string)=>{
-        if(tweetsLocalStoage){
-            let tweetArchivedSingle = localTweets.slice(index-1);
-            let listTweetArchived = [...tweetArchived,tweetArchivedSingle];
-            localStorage.setItem('archivedTweets',JSON.stringify(listTweetArchived))
-            localTweets.splice(index-1,1);
-            setTweets(localTweets);
-            localStorage.setItem('tweets', JSON.stringify(localTweets)); 
-        }
+    function archiveTweet(id:string){
+        let newTweetArchive = localTweets.filter((tweet,index)=>{
+            let tweetCasting = (tweet as TypeTweet); 
+            if(tweetCasting.id == id){
+                return tweet
+            }
+        });
+        let newArchivedTweets = [...localarchivedTweets,...newTweetArchive]
+        localStorage.setItem('archivedTweets',JSON.stringify(newArchivedTweets))
+        setTweetArchived(newArchivedTweets)
+        deleteTweet(id);
     }
 
+  
+
+    function deleteTweetArchived(id:string){
+            let newTweetsList = localarchivedTweets.filter((tweet,index)=>{
+                let tweetCasting = (tweet as TypeTweet); 
+                if(tweetCasting.id !== id){
+                return tweet
+                }
+            });
+            console.log(newTweetsList)
+            localStorage.setItem('archivedTweets', JSON.stringify(newTweetsList));
+            setTweetArchived(newTweetsList);
+    }
+
+
+    function unarchiveTweet(id:string){
+        let unarchive_tweet = localarchivedTweets.filter((tweet,index)=>{
+                let tweetCasting = (tweet as TypeTweet); 
+
+                if(tweetCasting.id == id){
+                    return tweet;
+                }
+        })
+        deleteTweetArchived(id);
+
+        let newTweetsList = [...localTweets,...unarchive_tweet]; // localtweet
+        localStorage.setItem('tweets', JSON.stringify(newTweetsList));
+        setTweets(newTweetsList);
+    }
+    
 
     const [tweets,setTweets] = useState<{}[]>(localTweets);
     const [tweetArchived,setTweetArchived] = useState<{}[]>(localarchivedTweets);
@@ -74,11 +101,17 @@ export function Home(props:home_props):JSX.Element{
                     }}/>
                 <Tweets 
                     allTweets={tweets}
-                    delete={(indice)=>{deleteTweet(indice)}}
-                    archive={(index)=>{archiveTweet(index)}}
+                    delete={(id)=>{deleteTweet(id)}}
+                    archive={(id)=>{archiveTweet(id)}}
                 
                 />
-                <TweetModal/>
+
+                <TweetModal
+                    allTweets={tweetArchived}
+                    deleteTweet={(id)=>{deleteTweetArchived(id)}}
+                    unArchiveTweet={(id)=>{unarchiveTweet(id)}}     
+                    />
+                
         </div>
     )
 }

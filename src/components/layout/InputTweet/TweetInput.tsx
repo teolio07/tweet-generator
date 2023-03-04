@@ -29,6 +29,7 @@ export function TweetInput(props:tweet_props):JSX.Element{
                 e.preventDefault();
                 let fullTweet:{} = {id:uuidv4(),name:name, tweet:tweet}
                 sendTweet(fullTweet)
+
             }}>Enviar</button>
         </form>
     )

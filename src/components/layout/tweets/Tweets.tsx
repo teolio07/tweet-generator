@@ -17,7 +17,6 @@ export function Tweets(props:tweets_props):JSX.Element{
     
     function deleteTweet(index:string){
         props.delete(index)
-        console.log(index+"desde")
     }
 
     function archive(index:string){
@@ -32,11 +31,11 @@ export function Tweets(props:tweets_props):JSX.Element{
         <ul className='ul_container'>
             <h2>Tweets</h2>
             {tweets.map((item) => (
-                <li key={id}>
+                <li key={item.id}>
 
                     <Tweet name={item.name} tweet={item.tweet}/>
-                    <button onClick={()=>{deleteTweet(item.id)}}>Eliminar</button>
-                    <button onClick={()=>{archive(item.id)}}>Archivar</button>
+                    <button onClick={()=>{deleteTweet(item.id)}}>Delete</button>
+                    <button onClick={()=>{archive(item.id)}}>Archive</button>
                 {id++}
 
 

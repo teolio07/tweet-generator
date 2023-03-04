@@ -18,13 +18,17 @@
 }
 
 
-.modal{
-    width: 100px;
-    height: 100px;
-    background-color: red;
-}
-
 .hide-modal{
     display: none;
 
+}
+
+.tweet-container-modal .ul_container{
+    position:absolute;
+    top:-100px;
+    left:-680px;
+    background-color:#e2e2a4;
+    border-radius:10px;
+    width: 49vw;
+    border: 2px dashed black;
 }
