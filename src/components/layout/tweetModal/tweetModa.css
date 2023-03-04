@@ -31,4 +31,8 @@
     border-radius:10px;
     width: 49vw;
     border: 2px dashed black;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

@@ -38,7 +38,7 @@ export function TweetModal(props:modal_props):JSX.Element{
         <div className="tweet-container-modal">
             <div className="modal hide-modal" ref={modalRef}>
                 <ul className='ul_container' >
-                    <h2>Tweets archive</h2>
+                    <h2>Tweets archive</h2>    <button onClick={()=>{showModal()}} style={{width:"5vw"}}>Close</button>
                     {tweets.map((item) => (
                 
                         <li key={item.id}>
