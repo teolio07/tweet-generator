@@ -10,12 +10,36 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+- task: Npm@1
+  displayName: 'npm custom'
+  inputs:
+    command: custom
+    workingDir: ''
+    verbose: false
+    customCommand: 'install --force'
+
+- task: Npm@1
+  displayName: 'npm serve'
+  inputs:
+    command: custom
+    workingDir: ''
+    verbose: false
+    customCommand: 'install -g serve'
+
+- task: Npm@1
+  displayName: 'npm run build'
+  inputs:
+    command: custom
+    workingDir: ''
+    verbose: false
+    customCommand: 'run build'
+
+- task: ArchiveFiles@2
+  displayName: 'Archive react-app'
+  inputs:
+    rootFolderOrFile: 'build'
+    includeRootFolder: false
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifect: drop'
